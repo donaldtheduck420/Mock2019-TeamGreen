@@ -9,18 +9,21 @@
 
 #include <frc/TimedRobot.h>
 #include <frc/commands/Command.h>
+#include <frc/commands/Subsystem.h>
 #include <frc/smartdashboard/SendableChooser.h>
 
 #include "OI.h"
 #include "commands/ExampleCommand.h"
+#include "commands/driveForward.h"
 #include "commands/MyAutoCommand.h"
 #include "subsystems/ExampleSubsystem.h"
+#include "subsystems/DriveTrain.h"
 
 class Robot : public frc::TimedRobot {
  public:
   static ExampleSubsystem m_subsystem;
-  static OI m_oi;
-
+  static OI* m_oi;
+  static DriveTrain* drive;
   void RobotInit() override;
   void RobotPeriodic() override;
   void DisabledInit() override;
@@ -38,4 +41,5 @@ class Robot : public frc::TimedRobot {
   ExampleCommand m_defaultAuto;
   MyAutoCommand m_myAuto;
   frc::SendableChooser<frc::Command*> m_chooser;
+  
 };
