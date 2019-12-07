@@ -9,7 +9,9 @@
 #pragma once
 
 #include "frc/commands/Subsystem.h"
+#include "subsystems/Arm.h"
 #include <ctre/Phoenix.h>
+//#include "AHRS.h"
 
 
 class DriveTrain : public frc::Subsystem {
@@ -20,6 +22,7 @@ class DriveTrain : public frc::Subsystem {
   TalonSRX* right;
   double leftPower;
   double rightPower;
+ // AHRS* navX;
 
  public:
   DriveTrain();
@@ -27,4 +30,6 @@ class DriveTrain : public frc::Subsystem {
   void tankDrive(double leftInput, double rightInput);
   double getPosition();
   void resetEncoders();
+  //double getAngle();
+  //void resetAngle();
 };

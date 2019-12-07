@@ -8,14 +8,11 @@
 #pragma once
 
 #include <frc/commands/Command.h>
-#include <ctre/Phoenix.h>
+#include "subsystems/Arm.h"
 
-class driveForward : public frc::Command {
- private: 
-  double setpoint;
-
+class MoveArm : public frc::Command {
  public:
-  driveForward(double distance);
+  MoveArm();
   void Initialize() override;
   void Execute() override;
   bool IsFinished() override;

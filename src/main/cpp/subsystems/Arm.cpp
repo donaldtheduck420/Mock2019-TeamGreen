@@ -5,14 +5,39 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "../../include/subsystems/Arm.h"
+#include "subsystems/Arm.h"
 
-Arm::Arm() : Subsystem("ExampleSubsystem") {}
+Arm::Arm() : Subsystem("Arm") {}
 
 void Arm::InitDefaultCommand() {
   // Set the default command for a subsystem here.
-  // SetDefaultCommand(new MySpecialCommand());
+  //SetDefaultCommand(new Arm());
 }
 
+void Arm::setAngle(double degrees){
+  Degree = degrees;
+}
+
+//void Arm::setPosition(double value){
+  //servo->setPosition();
+  
+//}
+
+/*double getAngle(){
+  return 
+}
+
+double getPosition(){
+
+}*/
+
+double Arm::moveArm(double power){
+  power = 0.5;
+  arm->Set(ControlMode::PercentOutput, power);
+}
+
+double Arm::getArmPosition() {
+  return arm->GetSelectedSensorPosition(0);
+}
 // Put methods for controlling this subsystem
 // here. Call these from Commands.

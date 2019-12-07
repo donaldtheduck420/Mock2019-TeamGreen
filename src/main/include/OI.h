@@ -7,7 +7,18 @@
 
 #pragma once
 
+#include "frc/WPIlib.h"
+using namespace frc;
+
 class OI {
+ private:
+  Joystick* armJoy;
+  Joystick* leftJoy;
+  Joystick* rightJoy; 
+
  public:
+  Joystick* getLeftJoy();
+  Joystick* getRightJoy();
+  Joystick* getArmJoy();
   OI();
 };

@@ -1,47 +1,40 @@
+/*----------------------------------------------------------------------------*/
 /* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-#include "commands/driveForward.h"
-#include "subsystems/DriveTrain.h"
+
+#include "commands/MoveArm.h"
+#include "subsystems/Arm.h"
 #include "Robot.h"
-#include "OI.h"
+#include "iostream"
 
+using namespace std;
 
-driveForward::driveForward(double distance) : Command("driveForward"){
+MoveArm::MoveArm() {
   // Use Requires() here to declare subsystem dependencies
-  // eg. Requires(Robot::drive());
-  setpoint = distance;
-  Requires(Robot::drive);
+  // eg. Requires(Robot::chassis.get());
+  Requires(Robot::m_Arm);
 }
 
 // Called just before this Command runs the first time
-void driveForward::Initialize() {
-  Robot::drive->resetEncoders();
-}
+void MoveArm::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void driveForward::Execute() { // =0.5 is a default value to run if no arguement is given=
-  Robot::drive->tankDrive(0.5, 0.5);
-  }
-
-// Make this return true when this Command no longer needs to run execute()
-
-bool driveForward::IsFinished() { 
-  if( Robot::drive->getPosition() >= setpoint) {
-    return true;
-  };
+void MoveArm::Execute() {
+  double armVal = Robot::m_oi->getArmJoy()->GetY() * 0.5;
+  Robot::m_Arm->moveArm(armVal);
 }
 
+// Make this return true when this Command no longer needs to run execute()
+bool MoveArm::IsFinished() { return false; }
+
 // Called once after isFinished returns true
-void driveForward::End() 
-{
-    Robot::drive->tankDrive(0, 0);
+void MoveArm::End() {
+
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void driveForward::Interrupted() {
-
-}
+void MoveArm::Interrupted() {}

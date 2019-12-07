@@ -6,9 +6,25 @@
 /*----------------------------------------------------------------------------*/
 
 #include "OI.h"
-
+#include "commands/MoveArm.h"
+#include "commands/TankDrive.h"
+#include "subsystems/Arm.h"
+#include "subsystems/DriveTrain.h"
 #include <frc/WPILib.h>
+using namespace frc;
 
-OI::OI() {
+OI::OI() : leftJoy(new Joystick(3)), rightJoy(new Joystick(2)), armJoy(new Joystick(1)) {
   // Process operator interface input here.
+}
+
+Joystick* OI::getLeftJoy() {
+  return leftJoy;
+}
+
+Joystick* OI::getRightJoy() { 
+  return rightJoy;
+}
+
+Joystick* OI::getArmJoy() {
+  return armJoy;
 }

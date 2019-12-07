@@ -7,7 +7,7 @@
 
 #include "subsystems/DriveTrain.h"
 #include "commands/driveForward.h"
-//#import "iostream"
+//#import "AHRS"
 
 
 
@@ -39,8 +39,6 @@ void DriveTrain::resetEncoders(){
   left->SetSelectedSensorPosition(0,0,10);
   right->SetSelectedSensorPosition(0,0,10);
 }
-
-
 
 void DriveTrain::InitDefaultCommand() {
   // Set the default command for a subsystem here.

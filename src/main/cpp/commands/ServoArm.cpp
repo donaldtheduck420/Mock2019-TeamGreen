@@ -5,25 +5,36 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/m_Arm.h"
+#include "commands/ServoArm.h"
+#include "subsystems/Arm.h"
+#include "Robot.h"
 
-m_Arm::m_Arm() {
+ServoArm::ServoArm() {
   // Use Requires() here to declare subsystem dependencies
   // eg. Requires(Robot::chassis.get());
+  Requires(Robot::servo);
 }
 
 // Called just before this Command runs the first time
-void m_Arm::Initialize() {}
+void ServoArm::Initialize() {
+  Robot::servo->setAngle(0);
+}
 
 // Called repeatedly when this Command is scheduled to run
-void m_Arm::Execute() {}
+void ServoArm::Execute() {
+  double Degree;
+  Robot::servo->setAngle(Degree);
+}
 
 // Make this return true when this Command no longer needs to run execute()
-bool m_Arm::IsFinished() { return false; }
+bool ServoArm::IsFinished() { 
+
+  return false; 
+  }
 
 // Called once after isFinished returns true
-void m_Arm::End() {}
+void ServoArm::End() {}
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void m_Arm::Interrupted() {}
+void ServoArm::Interrupted() {}

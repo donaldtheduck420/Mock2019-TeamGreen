@@ -8,13 +8,27 @@
 #pragma once
 
 #include <frc/commands/Subsystem.h>
+#include <ctre/Phoenix.h>
+#include "frc/Servo.h"
+
 
 class Arm : public frc::Subsystem {
  private:
+  TalonSRX* arm;
   // It's desirable that everything possible under private except
   // for methods that implement subsystem capabilities
 
+
  public:
+ 
   Arm();
   void InitDefaultCommand() override;
+  double getPosition();
+  double getAngle();
+  void setPosition(double value);
+  void setAngle(double degrees);
+  double moveArm(double power);
+  double getArmPosition();
+  double Degree;
+  double Pos;
 };

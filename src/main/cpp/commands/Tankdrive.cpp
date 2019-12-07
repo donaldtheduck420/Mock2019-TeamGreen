@@ -1,47 +1,39 @@
+/*----------------------------------------------------------------------------*/
 /* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-#include "commands/driveForward.h"
+
+#include "commands/Tankdrive.h"
 #include "subsystems/DriveTrain.h"
 #include "Robot.h"
-#include "OI.h"
+#include "iostream"
 
+using namespace std;
 
-driveForward::driveForward(double distance) : Command("driveForward"){
+Tankdrive::Tankdrive() {
   // Use Requires() here to declare subsystem dependencies
-  // eg. Requires(Robot::drive());
-  setpoint = distance;
-  Requires(Robot::drive);
+  // eg. Requires(Robot::chassis.get());
+  Requires(Robot::m_drive);
 }
 
 // Called just before this Command runs the first time
-void driveForward::Initialize() {
-  Robot::drive->resetEncoders();
-}
+void Tankdrive::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void driveForward::Execute() { // =0.5 is a default value to run if no arguement is given=
-  Robot::drive->tankDrive(0.5, 0.5);
-  }
+void Tankdrive::Execute() {
+  double leftPow = Robot::m_oi->getLeftJoy()->GetY() *0.5;
+  double rightPow = Robot::m_oi->getRightJoy()->GetY() *0.5;
+  Robot::m_drive->tankDrive(leftPow, rightPow);
+}
 
 // Make this return true when this Command no longer needs to run execute()
-
-bool driveForward::IsFinished() { 
-  if( Robot::drive->getPosition() >= setpoint) {
-    return true;
-  };
-}
+bool Tankdrive::IsFinished() { return false; }
 
 // Called once after isFinished returns true
-void driveForward::End() 
-{
-    Robot::drive->tankDrive(0, 0);
-}
+void Tankdrive::End() {}
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void driveForward::Interrupted() {
-
-}
+void Tankdrive::Interrupted() {}
