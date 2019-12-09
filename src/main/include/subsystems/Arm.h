@@ -10,11 +10,14 @@
 #include <frc/commands/Subsystem.h>
 #include <ctre/Phoenix.h>
 #include "frc/Servo.h"
+#include "frc/WPILib.h"
 
+using namespace frc;
 
 class Arm : public frc::Subsystem {
  private:
   TalonSRX* arm;
+  Servo* servo;
   // It's desirable that everything possible under private except
   // for methods that implement subsystem capabilities
 

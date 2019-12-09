@@ -7,14 +7,17 @@
 
 #include "OI.h"
 #include "commands/MoveArm.h"
+#include "commands/ServoArm.h"
 #include "commands/TankDrive.h"
 #include "subsystems/Arm.h"
 #include "subsystems/DriveTrain.h"
 #include <frc/WPILib.h>
 using namespace frc;
 
-OI::OI() : leftJoy(new Joystick(3)), rightJoy(new Joystick(2)), armJoy(new Joystick(1)) {
+OI::OI() : leftJoy(new Joystick(3)), rightJoy(new Joystick(2)), armJoy(new Joystick(1)), servoBut(new JoystickButton(armJoy, 1)) {
   // Process operator interface input here.
+  servoBut->WhenPressed(new ServoArm(180));
+  servoBut->WhenReleased(new ServoArm(-180));
 }
 
 Joystick* OI::getLeftJoy() {
@@ -28,3 +31,8 @@ Joystick* OI::getRightJoy() {
 Joystick* OI::getArmJoy() {
   return armJoy;
 }
+
+JoystickButton* OI::getServoBut() {
+  return servoBut;
+}
+

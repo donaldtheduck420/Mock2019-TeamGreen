@@ -15,10 +15,12 @@ class OI {
   Joystick* armJoy;
   Joystick* leftJoy;
   Joystick* rightJoy; 
-
+  JoystickButton* servoBut;
+  
  public:
   Joystick* getLeftJoy();
   Joystick* getRightJoy();
   Joystick* getArmJoy();
+  JoystickButton* getServoBut();
   OI();
 };

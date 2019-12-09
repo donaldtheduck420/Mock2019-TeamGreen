@@ -8,11 +8,15 @@
 #include "commands/ServoArm.h"
 #include "subsystems/Arm.h"
 #include "Robot.h"
+#include "iostream"
 
-ServoArm::ServoArm() {
+using namespace frc;
+
+ServoArm::ServoArm(double mypower) {
   // Use Requires() here to declare subsystem dependencies
   // eg. Requires(Robot::chassis.get());
   Requires(Robot::servo);
+  servoPower = mypower;
 }
 
 // Called just before this Command runs the first time

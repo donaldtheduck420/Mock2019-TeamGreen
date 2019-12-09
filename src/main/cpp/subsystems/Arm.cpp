@@ -6,8 +6,12 @@
 /*----------------------------------------------------------------------------*/
 
 #include "subsystems/Arm.h"
+#include "commands/MoveArm.h"
+#include "commands/ServoArm.h"
 
-Arm::Arm() : Subsystem("Arm") {}
+Arm::Arm() : Subsystem("Arm"), arm(new TalonSRX(6)), servo(new Servo(1)) {
+
+}
 
 void Arm::InitDefaultCommand() {
   // Set the default command for a subsystem here.

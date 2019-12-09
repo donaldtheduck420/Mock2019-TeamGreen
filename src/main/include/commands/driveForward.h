@@ -7,18 +7,9 @@
 
 #pragma once
 
-#include <frc/commands/Command.h>
-#include <ctre/Phoenix.h>
+#include <frc/commands/CommandGroup.h>
 
-class driveForward : public frc::Command {
- private: 
-  double setpoint;
-
+class DriveForward : public frc::CommandGroup {
  public:
-  driveForward(double distance);
-  void Initialize() override;
-  void Execute() override;
-  bool IsFinished() override;
-  void End() override;
-  void Interrupted() override;
+  DriveForward();
 };

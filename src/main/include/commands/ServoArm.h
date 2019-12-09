@@ -10,8 +10,10 @@
 #include <frc/commands/Command.h>
 
 class ServoArm : public frc::Command {
+ private:
+  double servoPower; 
  public:
-  ServoArm();
+  ServoArm(double mypower);
   void Initialize() override;
   void Execute() override;
   bool IsFinished() override;

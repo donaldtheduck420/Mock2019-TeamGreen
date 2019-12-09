@@ -25,6 +25,7 @@ void MoveArm::Initialize() {}
 void MoveArm::Execute() {
   double armVal = Robot::m_oi->getArmJoy()->GetY() * 0.5;
   Robot::m_Arm->moveArm(armVal);
+  
 }
 
 // Make this return true when this Command no longer needs to run execute()
