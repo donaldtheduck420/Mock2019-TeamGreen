@@ -18,7 +18,7 @@ OI::OI() : leftJoy(new Joystick(3)), rightJoy(new Joystick(2)), armJoy(new Joyst
   // Process operator interface input here.
   servoBut->WhenPressed(new ServoArm(180));
   servoBut->WhenReleased(new ServoArm(-180));
-}
+  }
 
 Joystick* OI::getLeftJoy() {
   return leftJoy;
